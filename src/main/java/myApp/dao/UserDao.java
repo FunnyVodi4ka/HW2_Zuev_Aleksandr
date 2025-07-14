@@ -18,6 +18,7 @@ public class UserDao implements HibernateDao<User> {
         session.save(user);
         transaction.commit();
         session.close();
+
     }
 
     public void update(User user) {
@@ -39,5 +40,9 @@ public class UserDao implements HibernateDao<User> {
     public List<User> getAll() {
         List<User> users = (List<User>)  HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From User").list();
         return users;
+    }
+
+    public User findByEmail(String email) {
+        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(User.class, email);
     }
 }

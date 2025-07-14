@@ -1,7 +1,9 @@
 package myApp.services;
 
 import myApp.actions.UserAction;
+import myApp.models.User;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UserService {
@@ -62,12 +64,16 @@ public class UserService {
         userAction.getById();
     }
 
-    public void getAll() {
-        userAction.getAll();
+    public List<User> getAll() {
+        return userAction.getAll();
     }
 
     public void saveUser() {
         userAction.saveUser();
+    }
+
+    public void saveUser(User user) {
+        userAction.saveUser(user);
     }
 
     public void updateUser() {
@@ -76,5 +82,13 @@ public class UserService {
 
     public void deleteUser() {
         userAction.deleteUser();
+    }
+
+    public void deleteUser(User user) {
+        userAction.deleteUser(user);
+    }
+
+    public User findByEmail(String email) {
+        return userAction.findByEmail(email);
     }
 }

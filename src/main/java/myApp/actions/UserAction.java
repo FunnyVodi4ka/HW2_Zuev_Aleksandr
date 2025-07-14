@@ -35,17 +35,19 @@ public class UserAction {
         if (user != null) System.out.println(user);
     }
 
-    public void getAll() {
+    public List<User> getAll() {
         List<User> users = usersDao.getAll();
         if (users.isEmpty()) {
             System.out.println("Список пользователей пуст");
-            return;
+            return users;
         }
 
         System.out.println("Список пользователей: ");
         for (User user : users) {
             System.out.println(user);
         }
+
+        return users;
     }
 
     public void saveUser() {
@@ -58,6 +60,10 @@ public class UserAction {
 
         usersDao.save(user);
         System.out.println("Пользователь сохранен");
+    }
+
+    public void saveUser(User user) {
+        usersDao.save(user);
     }
 
     public void updateUser() {
@@ -97,6 +103,10 @@ public class UserAction {
         }
     }
 
+    public void deleteUser(User user) {
+        usersDao.delete(user);
+    }
+
     public String enterUserName() {
         do {
             System.out.println("Введите имя: ");
@@ -122,5 +132,9 @@ public class UserAction {
             if(validation.checkAge(str)) return Integer.parseInt(str);
             System.out.println("Вы ввели неправильный возраст. Повторите попытку: ");
         } while (true);
+    }
+
+    public User findByEmail(String email) {
+        return usersDao.findByEmail(email);
     }
 }
